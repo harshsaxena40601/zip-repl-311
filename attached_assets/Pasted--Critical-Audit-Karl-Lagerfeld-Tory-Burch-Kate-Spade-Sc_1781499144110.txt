@@ -1,0 +1,241 @@
+# Critical Audit: Karl Lagerfeld, Tory Burch & Kate Spade Scrapers
+
+A critical audit has identified multiple issues in the **Karl Lagerfeld, Tory Burch, and Kate Spade** scrapers. These issues must be fixed at the root cause. **Do not apply manual corrections.**
+
+---
+
+# Issues Found
+
+## 1. Incorrect Pricing
+
+### Example 1
+
+**Brand:** Tory Burch
+
+* Original Price: **$470**
+* Expected Price (Pricing Formula): **~₹65,780**
+* Shopify Price: **₹43,897**
+
+**Result:**
+❌ Wrong price.
+
+---
+
+### Example 2
+
+**Brand:** Karl Lagerfeld
+
+* Original Price: **₹6,900**
+* Expected Price:
+  ((6900 + 2000) × 1.22) = **₹10,858**
+* Shopify Price: **₹10,886**
+
+**Result:**
+❌ Price mismatch.
+
+---
+
+### Example 3
+
+**Brand:** Karl Lagerfeld
+
+* Original Price: **₹8,200**
+* Expected Price:
+  ((8200 + 2000) × 1.22) = **₹12,444**
+* Shopify Price: **₹12,982**
+
+**Result:**
+❌ Price mismatch.
+
+---
+
+### Example 4
+
+**Brand:** Kate Spade
+
+* Original Price: **$58**
+* Expected Price (Pricing Formula): **~₹10,309**
+* Shopify Price: **₹10,270**
+
+**Result:**
+❌ Price mismatch.
+
+Although the difference is only ₹39, **every product must exactly follow the pricing formula. Any difference greater than ₹1 is considered a failure.**
+
+---
+
+# Pricing Rules (Mandatory)
+
+## INR Products
+
+If Original Price < ₹1,000
+
+Final Price = ((Original Price + 2000) × 1.25)
+
+If Original Price ≥ ₹1,000
+
+Final Price = ((Original Price + 2000) × 1.22)
+
+---
+
+## Foreign Currency Products
+
+Fetch the latest live exchange rate directly to INR.
+
+If Original Price < 1000
+
+Final Price = ((Original Price × (Today's INR Exchange Rate + 12)) + 2000) × 1.25
+
+If Original Price ≥ 1000
+
+Final Price = ((Original Price × (Today's INR Exchange Rate + 12)) + 2000) × 1.22
+
+Rules:
+
+* Use exactly one exchange rate lookup.
+* Convert directly to INR.
+* Never convert through another currency.
+* Never convert twice.
+* Never use cached or fallback exchange rates.
+* Round only the final INR value.
+
+---
+
+# 2. Variant Availability Bug
+
+Products are importing variants that are unavailable.
+
+Example:
+
+Website
+
+* XL = Out of Stock
+
+Shopify
+
+* XL = Available
+* Inventory = 100
+
+This is incorrect.
+
+Rules:
+
+* Import only variants that are actually available.
+* If a variant is sold out:
+
+  * Skip the variant completely, **or**
+  * Import it with Inventory = 0 and Shopify showing it as Sold Out.
+* Never assign default inventory (100) to unavailable variants.
+* Never guess stock availability.
+
+---
+
+# 3. Variant Validation
+
+For every product verify:
+
+* Variant Name
+* Variant SKU
+* Variant Availability
+* Variant Inventory
+* Variant Price
+* Variant Compare-at Price
+
+Shopify values must exactly match the source website.
+
+---
+
+# 4. Pricing Validation
+
+For every product log:
+
+* Brand
+* Product ID
+* Original Currency
+* Original Display Price
+* Raw Scraped Price (full precision)
+* Live Exchange Rate
+* Exchange Rate Source
+* Formula Used
+* Expected Price
+* Shopify Price
+* Difference
+
+If the difference is greater than ₹1:
+
+* Stop publishing immediately.
+* Print the exact file, function, and line where the incorrect price was generated.
+
+---
+
+# 5. Availability Validation
+
+For every variant compare:
+
+### Source Website
+
+* Available / Sold Out
+
+### Shopify
+
+* Available / Sold Out
+* Inventory
+
+Print every mismatch.
+
+---
+
+# 6. Repository Audit
+
+Search the entire repository for:
+
+* pricing
+* exchange_rate
+* currency
+* inventory
+* variants
+* availability
+* stock
+* out_of_stock
+* compare_at
+* sale_price
+* original_price
+* kate_spade
+* tory_burch
+* karl_lagerfeld
+
+Verify there is:
+
+* Exactly one pricing engine.
+* Exactly one inventory synchronization logic.
+* Exactly one currency conversion pipeline.
+
+No duplicate pricing logic should exist anywhere.
+
+---
+
+# 7. Final Report
+
+Generate a report containing:
+
+* Total products checked
+* Total variants checked
+* Total pricing mismatches
+* Total inventory mismatches
+* Total availability mismatches
+* Total currency conversion errors
+* Total products skipped due to invalid pricing
+* Total sold-out variants incorrectly imported
+* Files modified
+* Functions modified
+* Root cause of every pricing error
+* Root cause of every inventory error
+
+Do not deploy until:
+
+* Every price exactly matches the pricing formula.
+* Every variant matches the source website.
+* Every sold-out variant is handled correctly.
+* Every currency converts correctly to INR.
+* No hidden markup, duplicate conversion, fallback currency, cached exchange rate, or duplicate pricing logic exists.
+* The Shopify catalog is an exact representation of the source website for pricing, inventory, currency conversion, and availability.

@@ -1,0 +1,62 @@
+The pricing calculation is incorrect and must be fixed at the root cause.
+
+Current Example:
+
+* Original Price: €236
+* Generated Store Price: ₹48,443.00
+* Expected Store Price: ~₹38,632.00
+
+The pricing engine is producing prices that are significantly higher than expected. Audit the entire pricing pipeline and identify the root cause instead of applying manual corrections.
+
+Pricing Formula (Mandatory)
+
+Today's Rate = Current exchange rate of the source currency to Indian Rupees (INR).
+
+EUR
+
+* Price < €1,000:
+  ((€ × (Today's EUR→INR Rate + 12)) + 2000) × 1.25
+* Price ≥ €1,000:
+  ((€ × (Today's EUR→INR Rate + 12)) + 2000) × 1.22
+
+USD
+
+* Price < $1,000:
+  (($ × (Today's USD→INR Rate + 12)) + 2000) × 1.25
+* Price ≥ $1,000:
+  (($ × (Today's USD→INR Rate + 12)) + 2000) × 1.22
+
+GBP
+
+* Price < £1,000:
+  ((£ × (Today's GBP→INR Rate + 12)) + 2000) × 1.25
+* Price ≥ £1,000:
+  ((£ × (Today's GBP→INR Rate + 12)) + 2000) × 1.25
+
+Validation Requirements
+
+* Use the latest exchange rate against INR.
+* Add +12 to the exchange rate exactly once.
+* Add ₹2,000 exactly once.
+* Apply the markup multiplier exactly once.
+* Never convert the currency twice.
+* Never add shipping, handling, import fees, or markup unless explicitly defined in the formula.
+* Never reuse a previously converted INR value as input.
+* Perform all calculations using floating-point precision and round only the final store price.
+* Before saving any product, independently recalculate the expected price and compare it with the generated store price.
+* If the difference exceeds ₹1, treat it as a pricing error and stop publishing.
+
+For every product, log:
+
+* Original Currency
+* Original Price
+* Exchange Rate Used
+* Today's Rate + 12
+* Formula Applied
+* Intermediate Calculation
+* Expected Store Price
+* Generated Store Price
+* Difference
+* Pass/Fail
+
+Do not publish any product until the generated store price exactly matches the expected price calculated from the formula.

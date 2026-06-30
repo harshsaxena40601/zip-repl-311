@@ -1,0 +1,14 @@
+enabled: true
+model: "ZhengPeng7/BiRefNet"
+workers: 4
+canvas_size: 2000
+output_format: "JPEG"
+jpeg_quality: 95
+cache_enabled: true
+auto_detect_white_bg: true
+white_bg_threshold: 245
+white_bg_border_pct: 0.85
+sync_timeout: 5
+cache_dir: "processed_images"
+cache_file: "processed_images/cache.json"
+hf_cache_dir: ".birefnet_cache"

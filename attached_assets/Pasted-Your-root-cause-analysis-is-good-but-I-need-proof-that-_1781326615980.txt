@@ -1,0 +1,194 @@
+Your root cause analysis is good, but I need proof that the issue is completely fixed, not just an explanation.
+
+Perform a complete end-to-end audit of the pricing and upload pipeline.
+
+# Pricing Rules (Mandatory)
+
+Every product must be converted to **Indian Rupees (INR)** before publishing to Shopify.
+
+Use the **latest live exchange rate** of the source currency to INR.
+
+Supported currencies include, but are not limited to:
+
+* EUR
+* USD
+* GBP
+* CHF
+* AUD
+* CAD
+* JPY
+* CNY
+* HKD
+* SGD
+* AED
+* SAR
+* SEK
+* NOK
+* DKK
+* NZD
+* Any additional source currency
+
+No currency may fall back to another currency's exchange rate. If a live INR rate cannot be retrieved, stop processing and report an error.
+
+## Pricing Formula
+
+Today's Rate = Current live exchange rate from the source currency to INR.
+
+For every supported currency:
+
+If Original Price < 1000:
+
+Final Price = ((Original Price × (Today's Rate + 12)) + 2000) × 1.25
+
+If Original Price ≥ 1000:
+
+Final Price = ((Original Price × (Today's Rate + 12)) + 2000) × 1.22
+
+The final Shopify selling price must exactly equal this calculation.
+
+## Verify Every Stage
+
+### 1. Scraper
+
+Verify the scraper correctly extracts:
+
+* Sale Price
+* Compare-at (RRP) Price
+* Currency
+
+Ensure sale price is never overwritten by RRP.
+
+### 2. Currency Conversion
+
+For every product:
+
+* Detect the original currency.
+* Fetch the latest live exchange rate from that currency to INR.
+* Convert only once.
+* Never convert through USD, EUR, or any intermediate currency.
+* Never reuse an already converted INR value.
+* Never use cached or fallback exchange rates.
+* Throw an explicit error if the currency is unsupported.
+
+### 3. Pricing Engine
+
+Verify:
+
+* +12 is added exactly once.
+* ₹2,000 is added exactly once.
+* Only one multiplier is applied.
+* Threshold logic (<1000 vs ≥1000) is correct.
+* Floating-point precision is maintained until the final rounding.
+* Only the final INR value is rounded.
+
+### 4. Transformer
+
+Verify the mapping:
+
+* Shopify Price = Converted Sale Price
+* Shopify Compare-at Price = Converted RRP
+
+Confirm there is no code path where these values can be swapped.
+
+### 5. CSV Export
+
+Validate every exported row.
+
+For every product calculate:
+
+Expected Price = Pricing Formula(Sale Price)
+
+Expected Compare-at Price = Pricing Formula(RRP)
+
+Verify:
+
+Expected Price == Shopify Price
+
+Expected Compare-at Price == Shopify Compare-at Price
+
+If any mismatch exists, print:
+
+* Product ID
+* Brand
+* Currency
+* Sale Price
+* Compare-at Price
+* Exchange Rate Used
+* Expected Price
+* Exported Price
+* Difference
+* Reason
+
+### 6. Shopify Upload
+
+After upload, randomly sample at least 500 products.
+
+Verify:
+
+* Shopify Selling Price == CSV Selling Price
+* Shopify Compare-at Price == CSV Compare-at Price
+
+Print every mismatch.
+
+### 7. Regression Tests
+
+Test:
+
+* Regular product
+* Discounted product
+* No discount product
+* Every supported currency
+* Price below 1000
+* Price above or equal to 1000
+* Missing compare-at price
+* Missing currency
+* Unsupported currency
+* Currency API failure
+
+All tests must pass.
+
+### 8. Search for Hidden Bugs
+
+Search the repository for:
+
+price
+
+compare_at
+
+sale_price
+
+original_price
+
+rrp
+
+currency
+
+exchange_rate
+
+pricing
+
+shopify
+
+Verify there is exactly one authoritative pricing function used everywhere.
+
+No duplicate pricing logic may exist.
+
+## Final Report
+
+Produce:
+
+* Total products checked
+* Total currencies checked
+* Total CSV rows verified
+* Total Shopify products verified
+* Number of pricing mismatches
+* Number of compare-at mismatches
+* Number of currency conversion errors
+* Number of fallback currency usages
+* Files modified
+* Functions modified
+* Root cause of every failure found
+
+If even one mismatch exists, stop deployment immediately and identify the exact file, function, and line responsible.
+
+Do not assume the issue is fixed because the root cause was identified. Prove mathematically that every supported currency is converted correctly to INR and every Shopify selling price exactly follows the pricing formula before publishing.

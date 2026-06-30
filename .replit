@@ -1,0 +1,94 @@
+modules = ["python-3.11", "nodejs-20", "bash", "web"]
+[agent]
+expertMode = true
+stack = "FLASK_VANILLA_JS"
+
+[nix]
+channel = "stable-25_05"
+packages = ["freetype", "glibcLocales", "grpc", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "openssl", "postgresql", "tcl", "tk", "xcodebuild", "zlib"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Python Backend"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "git"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "tsx server.ts"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Python Backend"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python app.py"
+waitForPort = 8000
+
+[[workflows.workflow]]
+name = "git"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/git_push.sh"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
+
+[[ports]]
+localPort = 24678
+externalPort = 80
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
+build = ["bash", "-c", "pip install -r requirements.txt && npm run build"]
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 120000
+
+[userenv]
+
+[userenv.shared]
+"all_sizes=" = "Always Show UK size   UK 2 UK 2.5 UK 3 UK 3.5 UK 4 UK 4.5 UK 5 UK 5.5. UK 6 UK 6.5 UK 7 UK 7.5 UK 8 UK 8.5 UK 9 UK 9.5 UK 10 UK 10.5 UK 11 UK 11.5 UK 12 UK 12.5"
+"pricing_algo=" = "Below 1000 usd ((( $ X (TODAYS RATE+12)+2000) x 1.25)  Above 1000 usd ((( $ X (TODAYS RATE+12)+2000) x 1.22)   Below 1000 £ ((( £ X (TODAYS RATE+12)+2000) x 1.25)  Above 1000 £ ((( £ X (TODAYS RATE+12)+2000) x 1.25)"
+"all_Tags=" = "Gender \tMain Category\tSub Category men\tMen-apparel\tmen-tshirts men\tMen-apparel\tmen-shirt men\tMen-apparel\tmen-polo men\tMen-apparel\tmen-winterwear men\tmens-footwear\tmens-slides men\tmens-footwear\tmens-loafers men\tmens-footwear\tmens-sneakers men\tmens-accessories\tmens-bags men\tmens-accessories\tmens-wallets men\tmens-accessories\tmens-belts men\tmens-accessories\tmens-jewellery women\twomens-handbags\twomens-shoulderbags women\twomens-handbags\twomens-totebags women\twomens-handbags\twomens-minibag women\twomens-handbags\twomens-crossbodybag women\twomen-apparel\twomens-leggings women\twomen-apparel\twomens-topsandsportsbra women\twomen-apparel\twomens-winterwear women\twomen-apparel\twomens-co-ordsets women\twomens-footwear\twomens-heels women\twomens-footwear\twomens-flats women\twomens-footwear\twomens-loafers women\twomens-footwear\twomens-sneakers women\twomens-accessories\twomens-belts women\twomens-accessories\twomens-smallaccessories women\twomens-accessories\twomens-watches women\twomens-accessories\twomens-jewellery"
+"description_example=" = "\"<p>Discover the iconic Coach Restored Canvas Pants, exclusively curated by The Mirage. A masterpiece of artisanal craftsmanship, this piece embodies the relaxed New York elegance and considered design that define Coach's ready-to-wear legacy.</p><p><strong>Key Features &amp; Characteristics:</strong></p><ul><li>98% cotton, 2% elastane</li><li>Lining: 77% cotton, 23% polyester</li><li>Zip and button closures</li><li>Slip pockets</li><li>Inseam: 32&quot;</li><li>Machine wash</li><li>Coach (Re)Loved</li></ul><p>Crafted with the precision expected from Coach's New York heritage, the Restored Canvas Pants represents more than a pant — it's a statement in considered style. The premium fabric quality and considered tailoring showcase Coach's commitment to artisanal excellence without compromise. Whether smart-casual styling, the office, or weekend looks, this pant delivers the quality and character that those who value considered tailoring for everyday life demand. At The Mirage, we celebrate pieces that transcend trends. This Coach creation is a testament to purposeful design and uncompromising quality, making it an essential addition to any discerning wardrobe.</p><p><em>Exclusively curated for Mirage Retail Collective.</em></p>\""
+"PRODUCT_SCRAPING_RULES_ &_DATA _QUALITY_STANDARDS=" = "# MASTER PRODUCT SCRAPING RULES & DATA QUALITY STANDARDS  ## Core Principle  Before processing any product, ALWAYS load and validate all Configuration and Secret values.  Configuration is the single source of truth.  DO NOT:  * Hardcode values. * Guess missing information. * Create fallback values unless explicitly defined in Configuration. * Override configuration rules.  ALL product data must follow Configuration and Secret settings.  ---  ## 1. Configuration & Secret Validation  The scraper must load and validate all available Configuration and Secret values before starting product extraction.  Examples include:  * all_sizes * all_Tags * description_example * pricing_algo * category mappings * gender mappings * brand mappings * variant rules * image rules * product type mappings * collection mappings * custom business rules * any additional secret configuration values  ### Validation Requirements  * Verify all required configurations are available. * Apply configuration values wherever applicable. * Never use hardcoded replacements when configuration exists. * Validate output against configured rules before saving. * Log configuration errors immediately.  ### Failure Conditions  Reject or flag products if:  * Required configuration is missing. * Secret values cannot be loaded. * Product data does not match configured rules. * Category mapping fails. * Size mapping fails. * Tag generation fails. * Pricing algorithm cannot be applied.  ---  ## 2. Product Title Standards  Every product must have a clean, professional, marketplace-ready title.  ### Requirements  * Remove duplicate words. * Remove unnecessary symbols. * Remove internal IDs, SKUs, and garbage text. * Follow consistent title formatting. * Include Brand + Product Name + Key Attribute where applicable. * Ensure titles are readable and SEO-friendly.  ### Failure Conditions  * Empty title. * Broken title format. * Duplicate or corrupted title text.  ---  ## 3. Product Description Standards  Every product must contain a complete, structured description.  ### Requirements  * Follow description_example configuration. * Include all available product information. * Include key features. * Include specifications. * Include materials. * Include dimensions when available. * Include care instructions when available. * Remove unwanted HTML and formatting issues. * Remove duplicate content.  ### Failure Conditions  * Missing description. * Placeholder description. * Truncated description. * Low-quality description.  ---  ## 4. Variant Extraction Rules  Every available variant must be scraped.  ### Variant Types  * Size * Color * Material * Style * Width * Pack Size * Region-Specific Sizes * Any custom variant type  ### Requirements  * No variant may be skipped. * Variant options must match source data. * Variant mapping must be accurate. * Variant availability must be preserved.  ### Failure Conditions  * Missing variants. * Incorrect variant mapping. * Incomplete variant extraction.  ---  ## 5. Variant Image Rules  Every variant must contain ALL images belonging to that variant.  ### Requirements  * Collect all variant images. * Associate images with the correct variant. * Preserve image order. * Include every available image. * Do not assign only one image when multiple exist.  ### Example  ❌ Wrong:  Red Variant → 1 Image  Blue Variant → 1 Image  ✅ Correct:  Red Variant → All Red Images  Blue Variant → All Blue Images  Black Variant → All Black Images  ---  ## 6. Product Gallery Rules  The complete product gallery must be scraped.  ### Include  * Front images * Back images * Side images * Detail images * Lifestyle images * Zoom images * Product videos if available  ### Requirements  * Preserve image quality. * Preserve image order. * Collect all available media.  ---  ## 7. Duplicate Image Prevention  Duplicate images are not allowed.  ### Requirements  * Detect duplicate URLs. * Detect duplicate image hashes. * Remove repeated images. * Keep only unique images.  ### Validation  * Product gallery must contain unique images. * Variant galleries must contain unique images.  ---  ## 8. Product Tag Standards  Tags must be generated using Configuration rules.  ### Include  * Gender * Main Category * Sub Category * Product Type * Brand * Collection * Material * Color * Features * Style * Season * Any configured tag group  ### Requirements  * Follow all_Tags configuration. * Remove duplicates. * Remove irrelevant tags. * Maintain consistent formatting.  ### Failure Conditions  * Missing tags. * Duplicate tags. * Incorrect category tags. * Invalid tag formatting.  ---  ## 9. Size Standardization  Sizes must follow all_sizes configuration.  ### Requirements  * Convert sizes according to configured rules. * Preserve original size information. * Support UK, US, EU, and custom sizing systems. * Apply all configured size mappings.  ### Failure Conditions  * Missing sizes. * Incorrect size conversion. * Unmapped size values.  ---  ## 10. Pricing Validation  Pricing must follow pricing_algo configuration.  ### Requirements  * Apply configured pricing formula. * Validate source price. * Validate converted price. * Validate currency conversion.  ### Failure Conditions  * Missing price. * Invalid calculation. * Pricing rule violation.  ---  ## 11. Product Data Integrity Check  Before saving a product, verify:  ✓ Configuration loaded successfully  ✓ Secret values loaded successfully  ✓ Product title valid  ✓ Product description complete  ✓ All variants scraped  ✓ All variant images scraped  ✓ Product gallery complete  ✓ No duplicate images  ✓ Tags generated correctly  ✓ Sizes mapped correctly  ✓ Pricing calculated correctly  ✓ Category assigned correctly  ✓ Brand assigned correctly  ✓ Variant-image mapping validated  ✓ No empty fields  ✓ No null values  ✓ No placeholder data  ---  ## 12. Product Rejection Rules  Reject or flag a product when:  * Configuration validation fails. * Secret values are missing. * Product title is invalid. * Description is missing. * Variants are missing. * Variant images are incomplete. * Product gallery is incomplete. * Duplicate images exist. * Tags are missing or incorrect. * Sizes cannot be mapped. * Pricing cannot be calculated. * Data integrity checks fail.  ---  # FINAL GOAL  Every scraped product must be marketplace-ready with:  * Complete product information * Properly formatted title * High-quality description * Full variant coverage * Complete variant image galleries * Correct variant-to-image mapping * Zero duplicate images * Accurate categories * Correct pricing * Standardized sizes * High-quality tags * Full compliance with Configuration and Secret rules  CONFIGURATION IS THE SOURCE OF TRUTH.  IF CONFIGURATION EXISTS, USE IT.  DO NOT GUESS. DO NOT HARDCODE. DO NOT SKIP VALIDATION."
+"CRITICAL_GLOBAL_IMAGE_AND_VARIANT_ENFORCEMENT=" = "This rule applies to ALL scrapers, existing and future.  A variant is NOT complete until ALL images associated with that variant have been collected.  DO NOT:  * Take only the first image. * Take only the featured image. * Take only the thumbnail image. * Take only one image per color. * Stop after finding the first image. * Use product-level images as variant images without mapping.  REQUIRED:  For every variant:  1. Discover every media asset linked to the variant. 2. Collect every variant image URL. 3. Collect every gallery image URL belonging to the variant. 4. Collect lifestyle images belonging to the variant. 5. Collect alternate angle images belonging to the variant. 6. Collect model images belonging to the variant. 7. Collect detail images belonging to the variant. 8. Collect zoom images belonging to the variant.  Variant image count must equal source image count.  If source variant has:  BLACK = 12 images  PINK = 9 images  WHITE = 8 images  BLUE = 11 images  Then Shopify must contain:  BLACK = 12 images  PINK = 9 images  WHITE = 8 images  BLUE = 11 images  NOT:  BLACK = 1 image  PINK = 1 image  WHITE = 1 image  BLUE = 1 image  Before saving:  source_variant_image_count MUST EQUAL scraped_variant_image_count  If counts differ:  FAIL PRODUCT  DO NOT IMPORT  Duplicate detection must use:  1. Image URL comparison 2. Image hash comparison 3. Filename comparison 4. Shopify image comparison  Remove duplicates automatically.  If same image appears multiple times:  Store only one copy.  Scrape ALL media from source.  Including:  * Main images * Alternate images * Model images * Detail shots * Lifestyle shots * Zoom images  Never limit gallery size.  Never stop after first N images.  Every product description MUST follow:  description_example  Structure:  1. Introduction Paragraph  2. Key Features & Characteristics  3. Bullet List  4. Detailed Brand Story  5. Mirage Curated Footer  Required HTML:  Missing sections = FAIL PRODUCT  Tags MUST ONLY be generated from:  all_Tags configuration  Never generate custom tags.  Never invent tags.  Never use fallback tags.  ALL sizes must use:  all_sizes configuration  Always output:  UK 2 UK 2.5 UK 3 UK 3.5 ... UK 12.5  Never output:  EU sizes US sizes Raw source sizes  without conversion.  Reject product if:  * Variant images missing * Variant image count mismatch * Duplicate images found * Description format invalid * Tags not from all_Tags * Sizes not from all_sizes * Pricing not from pricing_algo * Configuration not loaded  NO EXCEPTIONS.  ALL CURRENT SCRAPERS. ALL FUTURE SCRAPERS. ALL IMPORT WORKFLOWS. ALL PRODUCT SOURCES.  MUST FOLLOW THESE RULES."

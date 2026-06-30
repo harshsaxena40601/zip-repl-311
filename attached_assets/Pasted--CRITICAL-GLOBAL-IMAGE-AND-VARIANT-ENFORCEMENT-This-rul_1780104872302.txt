@@ -1,0 +1,170 @@
+[CRITICAL_GLOBAL_IMAGE_AND_VARIANT_ENFORCEMENT]
+
+This rule applies to ALL scrapers, existing and future.
+
+A variant is NOT complete until ALL images associated with that variant have been collected.
+
+DO NOT:
+
+* Take only the first image.
+* Take only the featured image.
+* Take only the thumbnail image.
+* Take only one image per color.
+* Stop after finding the first image.
+* Use product-level images as variant images without mapping.
+
+REQUIRED:
+
+For every variant:
+
+1. Discover every media asset linked to the variant.
+2. Collect every variant image URL.
+3. Collect every gallery image URL belonging to the variant.
+4. Collect lifestyle images belonging to the variant.
+5. Collect alternate angle images belonging to the variant.
+6. Collect model images belonging to the variant.
+7. Collect detail images belonging to the variant.
+8. Collect zoom images belonging to the variant.
+
+Variant image count must equal source image count.
+
+If source variant has:
+
+BLACK = 12 images
+
+PINK = 9 images
+
+WHITE = 8 images
+
+BLUE = 11 images
+
+Then Shopify must contain:
+
+BLACK = 12 images
+
+PINK = 9 images
+
+WHITE = 8 images
+
+BLUE = 11 images
+
+NOT:
+
+BLACK = 1 image
+
+PINK = 1 image
+
+WHITE = 1 image
+
+BLUE = 1 image
+
+Before saving:
+
+source_variant_image_count
+MUST EQUAL
+scraped_variant_image_count
+
+If counts differ:
+
+FAIL PRODUCT
+
+DO NOT IMPORT
+
+Duplicate detection must use:
+
+1. Image URL comparison
+2. Image hash comparison
+3. Filename comparison
+4. Shopify image comparison
+
+Remove duplicates automatically.
+
+If same image appears multiple times:
+
+Store only one copy.
+
+Scrape ALL media from source.
+
+Including:
+
+* Main images
+* Alternate images
+* Model images
+* Detail shots
+* Lifestyle shots
+* Zoom images
+
+Never limit gallery size.
+
+Never stop after first N images.
+
+Every product description MUST follow:
+
+description_example
+
+Structure:
+
+1. Introduction Paragraph
+
+2. Key Features & Characteristics
+
+3. Bullet List
+
+4. Detailed Brand Story
+
+5. Mirage Curated Footer
+
+Required HTML:
+
+Missing sections = FAIL PRODUCT
+
+Tags MUST ONLY be generated from:
+
+all_Tags configuration
+
+Never generate custom tags.
+
+Never invent tags.
+
+Never use fallback tags.
+
+ALL sizes must use:
+
+all_sizes configuration
+
+Always output:
+
+UK 2
+UK 2.5
+UK 3
+UK 3.5
+...
+UK 12.5
+
+Never output:
+
+EU sizes
+US sizes
+Raw source sizes
+
+without conversion.
+
+Reject product if:
+
+* Variant images missing
+* Variant image count mismatch
+* Duplicate images found
+* Description format invalid
+* Tags not from all_Tags
+* Sizes not from all_sizes
+* Pricing not from pricing_algo
+* Configuration not loaded
+
+NO EXCEPTIONS.
+
+ALL CURRENT SCRAPERS.
+ALL FUTURE SCRAPERS.
+ALL IMPORT WORKFLOWS.
+ALL PRODUCT SOURCES.
+
+MUST FOLLOW THESE RULES.

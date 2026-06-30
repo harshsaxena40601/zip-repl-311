@@ -1,0 +1,351 @@
+# PHASE 13: DASHBOARD STABILITY & JOB MANAGEMENT FIXES
+
+## Dashboard Root Cause Investigation
+
+Perform a complete audit of the scraper dashboard.
+
+Current issues observed:
+
+* Scrapers continue running indefinitely.
+* Jobs do not automatically end.
+* Status becomes stuck in Running state.
+* Completion status is not updated correctly.
+* Failed jobs remain active.
+* Dashboard metrics become inaccurate.
+* Progress tracking is unreliable.
+
+Determine the exact root cause.
+
+Do not apply temporary patches.
+
+Identify and fix the actual source of the problem.
+
+Investigate:
+
+* Job lifecycle management
+* Queue processing
+* Worker execution
+* Background tasks
+* Database status updates
+* Redis/cache issues
+* Timeout handling
+* Failed task cleanup
+* Process termination logic
+* Dashboard state synchronization
+
+Document findings and implement permanent fixes.
+
+---
+
+## Automatic Job Completion
+
+Every scraper run must have a proper lifecycle.
+
+Required states:
+
+Queued
+
+Running
+
+Quality Gate Validation
+
+Completed
+
+Failed
+
+Cancelled
+
+A scraper must automatically move to Completed when:
+
+* Scraping is finished
+* Quality Gate passes
+* Shopify upload completes
+* Final validation completes
+
+A scraper must automatically move to Failed when:
+
+* Validation fails
+* Scraping crashes
+* Import fails
+* Configuration loading fails
+* Critical errors occur
+
+No scraper should remain permanently in Running state.
+
+---
+
+## Stuck Job Detection
+
+Implement automatic stuck-job detection.
+
+Examples:
+
+* No progress for X minutes
+* No products processed
+* No worker activity
+* No database updates
+
+Automatically:
+
+* Mark job as Stuck
+* Log reason
+* Alert dashboard
+* Allow restart
+
+---
+
+# PHASE 14: QUALITY GATE INTEGRATION
+
+Quality Gate must run automatically for EVERY scraper.
+
+No product should bypass validation.
+
+Current Scraper Flow:
+
+Scrape Product
+→ Upload Product
+
+New Required Flow:
+
+Scrape Product
+→ Quality Gate Validation
+→ Upload Product
+→ Final Validation
+→ Complete Job
+
+Quality Gate must check:
+
+* Title
+* Description
+* Images
+* Variants
+* Variant Images
+* Tags
+* Sizes
+* Pricing
+* Category
+* Brand
+* Collections
+* Duplicate Images
+* Duplicate Variants
+* Missing Data
+* Configuration Compliance
+
+---
+
+## Product-Level Quality Gate
+
+For every product:
+
+Generate a Quality Report.
+
+Example:
+
+PASS
+FAIL
+WARNING
+
+Validation Categories:
+
+* Images
+* Variants
+* Description
+* Tags
+* Sizes
+* Pricing
+* Category Mapping
+* Configuration Compliance
+
+---
+
+## Scraper-Level Quality Gate
+
+After scraper completion:
+
+Generate summary report.
+
+Example:
+
+Products Scraped: 500
+
+Products Passed: 472
+
+Products Failed: 28
+
+Missing Images: 12
+
+Duplicate Images: 8
+
+Variant Mapping Errors: 5
+
+Description Failures: 3
+
+Tag Failures: 6
+
+Size Mapping Failures: 2
+
+Quality Score: 94%
+
+---
+
+# PHASE 15: COPY ALL QUALITY GATE ERRORS
+
+Add a dashboard feature:
+
+"Copy All Errors"
+
+Requirements:
+
+Single-click button.
+
+Copies all quality gate errors into clipboard.
+
+Output format:
+
+Product ID:
+Product Name:
+Error Type:
+Error Details:
+
+Example:
+
+Product:
+Cotton Rib Tank Dress
+
+Errors:
+
+* Variant Image Count Mismatch
+* Missing 8 Variant Images
+* Duplicate Image Detected
+* Description Structure Invalid
+
+---
+
+Product:
+Hot Short
+
+Errors:
+
+* Missing Tags
+* Invalid Category Mapping
+
+---
+
+Copy all errors instantly.
+
+No manual exporting required.
+
+---
+
+# PHASE 16: QUALITY GATE DASHBOARD
+
+Create dedicated dashboard section:
+
+QUALITY GATE
+
+Display:
+
+Total Products
+
+Passed
+
+Failed
+
+Warnings
+
+Quality Score
+
+Image Issues
+
+Variant Issues
+
+Description Issues
+
+Tag Issues
+
+Size Issues
+
+Pricing Issues
+
+Category Issues
+
+Configuration Issues
+
+---
+
+## Error Investigation Panel
+
+Every failed product must provide:
+
+Root Cause
+
+Validation Details
+
+Affected Fields
+
+Recommended Fix
+
+Raw Error Log
+
+Screenshot Link (if available)
+
+Source URL
+
+Product Data Snapshot
+
+---
+
+# PHASE 17: RESTART ALL SCRAPERS WITH NEW RULES
+
+After implementation:
+
+1. Stop all scraper workers.
+2. Stop all running jobs.
+3. Clear job cache.
+4. Clear image cache.
+5. Clear variant cache.
+6. Clear validation cache.
+7. Reload configuration.
+8. Reload secrets.
+9. Rebuild validation engine.
+10. Restart dashboard services.
+11. Restart all scraper workers.
+12. Re-run failed products.
+13. Reprocess affected products.
+14. Verify quality gate results.
+
+No scraper should continue using legacy logic.
+
+No scraper should bypass the new validation engine.
+
+---
+
+# FINAL REQUIREMENT
+
+The platform must become self-validating.
+
+Every scraper run must:
+
+✓ Scrape data
+
+✓ Validate data
+
+✓ Generate quality report
+
+✓ Generate error report
+
+✓ Detect root causes
+
+✓ Display failures in dashboard
+
+✓ Allow copy-all-errors
+
+✓ Automatically complete jobs
+
+✓ Automatically fail invalid products
+
+✓ Automatically enforce configuration rules
+
+The goal is not simply running scrapers.
+
+The goal is producing complete, validated, marketplace-ready products with full visibility into every error and root cause across the entire platform.

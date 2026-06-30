@@ -1,0 +1,66 @@
+Here's a cleaner, more precise version of your prompt for an AI agent:
+
+> **Run a complete audit and fix for the following brands only:**
+>
+> * COACH
+> * HOKA
+> * MYTHERESA
+> * MARC JACOBS
+> * SKIMS
+> * CRUISE FASHION
+>
+> **Requirements:**
+>
+> 1. Ensure all products are imported correctly with **zero errors**.
+> 2. Remove all duplicate products.
+> 3. Import **only valid, currently available (in-stock)** products. Do not upload out-of-stock or unavailable products.
+> 4. Ensure all product variants are accurate:
+>
+>    * Only existing variants
+>    * Correct sizes/colors
+>    * No missing or duplicate variants
+>    * Proper variant images mapped to each variant
+> 5. Verify and correct:
+>
+>    * Product title
+>    * Description
+>    * Pricing
+>    * Compare-at price (if applicable)
+>    * Images
+>    * Variant images
+>    * Tags
+>    * Vendor
+>    * Product type
+>    * Collections
+>    * Options and variants
+>    * SKU/Barcode (if available)
+>    * Inventory status
+>    * SEO fields (if applicable)
+> 6. Validate image quality:
+>
+>    * No broken images
+>    * No duplicate images
+>    * High-resolution images only
+>    * Correct image order
+> 7. Validate pricing:
+>
+>    * Accurate current price
+>    * Correct currency
+>    * No pricing mismatches
+>    * No invalid discounts
+> 8. Check overall product quality and consistency across all fields.
+> 9. If any issue is found, **identify and fix the root cause**, not just the symptom.
+> 10. **Do not upload any product until it passes all validation checks.**
+> 11. After all issues are resolved, upload only fully validated products to the **main/production** environment.
+> 12. Perform a final post-upload verification to confirm:
+>
+>     * No duplicates
+>     * No missing products
+>     * No missing variants
+>     * No broken images
+>     * No incorrect pricing
+>     * No missing tags
+>     * No data inconsistencies
+>     * Zero upload errors
+>
+> **Expected outcome:** A production-ready catalog containing only high-quality, in-stock, correctly priced products with complete variants, accurate metadata, correct images, and no duplicates or data integrity issues. If a product cannot be fully validated and corrected, skip it and include it in an error report instead of uploading it.

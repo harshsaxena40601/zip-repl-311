@@ -1,0 +1,640 @@
+Product: Cotton Rib Tank
+SKU: AP-TNK-0038-LHG-2X
+Errors:
+  • [variants] 41/85 colour variants have no images — 48% missing variant images
+---
+Product: Cotton Jersey Maternity T-shirt
+SKU: SS-STT-8046W-NVY-XXS
+Errors:
+  • [variants] 7/13 colour variants have no images — 54% missing variant images
+---
+Product: Cotton Fleece Classic Straight Leg Pant
+SKU: ST-PNT-8385W-LHG-XXS
+Errors:
+  • [variants] 15/47 colour variants have no images — 32% missing variant images
+---
+Product: Cotton Jersey Scoop Neck Long Sleeve Top
+SKU: LS-LST-7908W-LHG-XS
+Errors:
+  • [variants] 6/16 colour variants have no images — 38% missing variant images
+---
+Product: Soft Lounge Long Slip Dress
+SKU: AP-DRS-0596-ONX-XXS
+Errors:
+  • [variants] 7/20 colour variants have no images — 35% missing variant images
+---
+Product: Cotton Fleece Oversized Double Waistband Pant
+SKU: PT-PNT-10459W-LHG-S
+Errors:
+  • [variants] 4/12 colour variants have no images — 33% missing variant images
+---
+Product: Cotton Rib Legging
+SKU: AP-LEG-0039-LHG-M
+Errors:
+  • [variants] 12/31 colour variants have no images — 39% missing variant images
+---
+Product: Outdoor Fleece Straight Leg Pant
+SKU: WL-WLG-9938W-ECU-XXS
+Errors:
+  • [variants] 9/25 colour variants have no images — 36% missing variant images
+---
+Product: Cotton Rib Tank Midi Dress
+SKU: DS-DRS-10162W-SOT-XXS
+Errors:
+  • [variants] 6/17 colour variants have no images — 35% missing variant images
+---
+Product: Hosiery Open Toe Knee High Sock
+SKU: SH-SCK-11524W-SNO-S/M
+Errors:
+  • [variants] 2/4 colour variants have no images — 50% missing variant images
+---
+Product: Worn in Jersey High Crew Tank
+SKU: TP-SSL-11767W-WON-XXS
+Errors:
+  • [variants] 8/17 colour variants have no images — 47% missing variant images
+---
+Product: Fits Everybody Cami
+SKU: TP-CAM-9421-ARC-3X
+Errors:
+  • [variants] 5/10 colour variants have no images — 50% missing variant images
+---
+Product: Cotton Fleece Shrunken Cardigan
+SKU: TP-SCL-11565W-WAR-XXS
+Errors:
+  • [variants] 5/12 colour variants have no images — 42% missing variant images
+---
+Product: Cotton Fleece Long Short
+SKU: BT-SHO-11634W-WAR-4X
+Errors:
+  • [variants] 12/14 colour variants have no images — 86% missing variant images
+---
+Product: Cotton Jersey Zip Up Hoodie
+SKU: ZU-ZUP-8235W-SOT-XXS
+Errors:
+  • [variants] 6/16 colour variants have no images — 38% missing variant images
+---
+Product: Smooth Layers Square Neck Tank
+SKU: SL-TNK-9901W-OBD-XXS
+Errors:
+  • [variants] 7/11 colour variants have no images — 64% missing variant images
+---
+Product: The Essential Collection High-waisted Capri
+SKU: PT-PNT-10139W-OBD-3X
+Errors:
+  • [variants] 7/11 colour variants have no images — 64% missing variant images
+---
+Product: French Terry Long Short
+SKU: BT-SHO-11244W-ESP-XXS
+Errors:
+  • [variants] 5/16 colour variants have no images — 31% missing variant images
+---
+Product: Cotton Rib Loose Short
+SKU: SH-SHO-8509W-NVY-L
+Errors:
+  • [variants] 5/6 colour variants have no images — 83% missing variant images
+---
+Product: Skims Body High-waisted Capri
+SKU: BO-PNT-10567W-ONX-XXS
+Errors:
+  • [variants] 4/12 colour variants have no images — 33% missing variant images
+---
+Product: Textured Sock 3-pack
+SKU: SH-SCK-10503W-BLI-S
+Errors:
+  • [variants] 2/4 colour variants have no images — 50% missing variant images
+---
+Product: Skims Body Corset
+SKU: TP-CRT-10564W-ONX-XXS
+Errors:
+  • [variants] 5/11 colour variants have no images — 45% missing variant images
+---
+Product: Cotton Jersey Long Sleeve Boatneck Top
+SKU: TP-LSL-11209W-MBL-XL
+Errors:
+  • [variants] 9/19 colour variants have no images — 47% missing variant images
+---
+Product: Cotton Fleece Logo Classic Crewneck
+SKU: TP-SCL-13278W-OALP-XS
+Errors:
+  • [variants] 4/5 colour variants have no images — 80% missing variant images
+---
+Product: Skims Ultimate Balconette Push-up Bra — Part 3
+SKU: BA-BAL-5486W-ONX-38DD
+Errors:
+  • [variants] 32/42 colour variants have no images — 76% missing variant images
+---
+Product: Skims Ultimate Nipple Wireless Push-up Bra — Part 3
+SKU: PL-PLG-7834W-COA-42D
+Errors:
+  • [variants] 29/31 colour variants have no images — 94% missing variant images
+---
+Product: Skims Ultimate Strapless Push-up Bra — Part 3
+SKU: BA-BAN-9056-CLY-42C
+Errors:
+  • [variants] 35/38 colour variants have no images — 92% missing variant images
+---
+Product: Wireless Form T-shirt Demi Bra — Part 5
+SKU: BR-LIG-10680W-COA-38H
+Errors:
+  • [variants] 11/36 colour variants have no images — 31% missing variant images
+---
+Product: Wireless Form Super Push-up Bra — Part 3
+SKU: PL-PLG-9558W-SND-36C
+Errors:
+  • [variants] 17/35 colour variants have no images — 49% missing variant images
+---
+Product: Wireless Form Maternity Nursing Bra — Part 3
+SKU: PL-PLG-7704W-CLY-34DDDD
+Errors:
+  • [variants] 21/40 colour variants have no images — 52% missing variant images
+---
+Product: Multi-way Bra — Part 3
+SKU: ST-STP-5942W-JSP-34D
+Errors:
+  • [variants] 44/72 colour variants have no images — 61% missing variant images
+---
+Product: Everyday Cotton Ultimate Teardrop Push-up Bra — Part 3
+SKU: BR-PUS-10645W-CLT-38DDD
+Errors:
+  • [variants] 28/37 colour variants have no images — 76% missing variant images
+---
+Product: Skims Lace Unlined Demi Bra — Part 2
+SKU: DM-DEM-10428W-FWN-44DD
+Errors:
+  • [variants] 14/15 colour variants have no images — 93% missing variant images
+---
+Product: Skims Sticky Bra
+SKU: ST-STP-8649W-SIE-D
+Errors:
+  • [variants] 17/22 colour variants have no images — 77% missing variant images
+---
+Product: Lightweight Cotton Pointelle Lace Cami and Boy Short Set
+SKU: LG-SET-11247W-LHPD-XXS
+Errors:
+  • [variants] 6/15 colour variants have no images — 40% missing variant images
+---
+Product: Stretch Lace Brief
+SKU: BR-BRF-9169W-SOT-XXS
+Errors:
+  • [variants] 11/19 colour variants have no images — 58% missing variant images
+---
+Product: Lightweight Cotton Lace Cami and Boy Short Set
+SKU: LG-SET-10606W-SDF-2X
+Errors:
+  • [variants] 8/14 colour variants have no images — 57% missing variant images
+---
+Product: Fits Everybody Lace Dipped Thong 5-pack
+SKU: PN-THG-9365-IPM-L
+Errors:
+  • [variants] 18/32 colour variants have no images — 56% missing variant images
+---
+Product: Lightweight Cotton Logo Picot Cami and Boy Short Set
+SKU: LG-SET-10607W-SCN-XL
+Errors:
+  • [variants] 5/9 colour variants have no images — 56% missing variant images
+---
+Product: Fits Everybody Lace Cheeky Tanga 5-pack
+SKU: PN-TNG-9384-SKH-XXS
+Errors:
+  • [variants] 17/32 colour variants have no images — 53% missing variant images
+---
+Product: Skims Lace Cami and Short Set
+SKU: LG-SET-10623W-SNO-2X
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Skims Lace Mini Slip Dress
+SKU: LG-SLI-10624W-SNO-L
+Errors:
+  • [variants] 6/7 colour variants have no images — 86% missing variant images
+---
+Product: Woven Shine Lace Slip Dress
+SKU: DS-DRS-9534W-IVY-XXS
+Errors:
+  • [variants] 5/6 colour variants have no images — 83% missing variant images
+---
+Product: Skims Sleep Lace Mini Dress
+SKU: OP-DRS-11848W-BLO-XXS
+Errors:
+  • [variants] 5/10 colour variants have no images — 50% missing variant images
+---
+Product: Lightweight Cotton Thong 10-pack
+SKU: UN-THG-11493W-DFMI-XXS
+Errors:
+  • [variants] 17/26 colour variants have no images — 65% missing variant images
+---
+Product: Lightweight Cotton String Thong 10-pack
+SKU: UN-THG-11113W-HSM-XXS
+Errors:
+  • [variants] 6/15 colour variants have no images — 40% missing variant images
+---
+Product: Lightweight Cotton Ruched Back Hipster 10-pack
+SKU: UN-HIP-11808W-DFMI-XXS
+Errors:
+  • [variants] 15/27 colour variants have no images — 56% missing variant images
+---
+Product: Shine Foundations Dipped Bikini
+SKU: BK-BIK-6380W-DPK-XL
+Errors:
+  • [variants] 7/13 colour variants have no images — 54% missing variant images
+---
+Product: Lightweight Cotton Bikini 10-pack
+SKU: UN-BIK-11114W-HSM-XXS
+Errors:
+  • [variants] 6/15 colour variants have no images — 40% missing variant images
+---
+Product: Raw Edge Micro Thong
+SKU: UN-THG-10677W-SNO-L
+Errors:
+  • [variants] 4/12 colour variants have no images — 33% missing variant images
+---
+Product: Shine Foundations Dipped Thong
+SKU: TH-THG-6381W-MLN-4X
+Errors:
+  • [variants] 4/12 colour variants have no images — 33% missing variant images
+---
+Product: Lightweight Cotton Ruched Back Hipster
+SKU: HP-HIP-9781W-MBT-3X
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Power Mesh Shapewear Core Sculpt High-waisted Mid Thigh Short
+SKU: BO-SHO-9476W-ONX-XXS
+Errors:
+  • [variants] 6/16 colour variants have no images — 38% missing variant images
+---
+Product: Power Mesh Shapewear Core Sculpt High-waisted Brief
+SKU: UN-BRF-11241W-ONX-XXS
+Errors:
+  • [variants] 6/17 colour variants have no images — 35% missing variant images
+---
+Product: Skims Sleep Long Sleeve Button Up Set
+SKU: ST-PNS-5752W-BMMA-XXS
+Errors:
+  • [variants] 4/9 colour variants have no images — 44% missing variant images
+---
+Product: Skims for Team USA Worn in Jersey Olympic Shrunken T-shirt
+SKU: TP-STT-10219W-ECU-XXS
+Errors:
+  • [variants] 3/7 colour variants have no images — 43% missing variant images
+---
+Product: Skims for Team USA Worn in Jersey Olympic Long Sleeve T-shirt
+SKU: TP-LST-10221W-ECU-XXS
+Errors:
+  • [variants] 3/9 colour variants have no images — 33% missing variant images
+---
+Product: Skims for Team USA Fleece Olympic Oversized Sleep Top
+SKU: TP-LST-10202W-ECU-XXS
+Errors:
+  • [variants] 6/13 colour variants have no images — 46% missing variant images
+---
+Product: Skims Sleep Straight Leg Pant
+SKU: BO-PNT-5754W-BMMA-XL
+Errors:
+  • [variants] 4/5 colour variants have no images — 80% missing variant images
+---
+Product: Cotton Poplin Oversized Sleep Set
+SKU: ST-SET-9517W-CBS-XS
+Errors:
+  • [variants] 5/14 colour variants have no images — 36% missing variant images
+---
+Product: Logo Pointelle Cami Sleep Set
+SKU: ST-SST-11874W-SOT-M
+Errors:
+  • [variants] 6/18 colour variants have no images — 33% missing variant images
+---
+Product: Soft Lounge Robe
+SKU: RB-WRP-5748W-MMH-XXS
+Errors:
+  • [variants] 7/22 colour variants have no images — 32% missing variant images
+---
+Product: Satin Mini Duffle Bag
+SKU: BP-BGS-11814W-HLT-OS
+Errors:
+  • [variants] 1/2 colour variants have no images — 50% missing variant images
+---
+Product: Cozy Knit Blanket
+SKU: TB-BLK-4596-BYP-OS
+Errors:
+  • [variants] 1/2 colour variants have no images — 50% missing variant images
+---
+Product: Valentines Sock 3-pack
+SKU: SH-SCK-10503W-HLP-S
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Skims for Team USA Jersey Sleep Olympic T-shirt
+SKU: TP-STT-10211M-ECU-XS
+Errors:
+  • [variants] 4/7 colour variants have no images — 57% missing variant images
+---
+Product: Lettuce Edge Crew Sock 2-pack
+SKU: SH-SCK-9593W-BSP-S
+Errors:
+  • [variants] 2/4 colour variants have no images — 50% missing variant images
+---
+Product: Cozy Knit Robe
+SKU: RB-LNG-4560-MIH-2X/3X
+Errors:
+  • [variants] 12/16 colour variants have no images — 75% missing variant images
+---
+Product: Cozy Knit Sock
+SKU: AC-SCK-0974-BYP-OS
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Skims for Team USA Olympic Lounge Sock
+SKU: SO-SCK-10463W-ECU-S
+Errors:
+  • [variants] 12/17 colour variants have no images — 71% missing variant images
+---
+Product: Cotton Jersey Shirred Bust Long Sleeve
+SKU: LS-LST-10034W-LHG-XS
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Seamless Sculpt Solution Short Left Leg Exposed
+SKU: BO-SHO-3366-CLY-3X
+Errors:
+  • [variants] 4/5 colour variants have no images — 80% missing variant images
+---
+Product: Fits Everybody Racerback Demi Bra — Part 2
+SKU: DM-DEM-7626W-COA-40DDDD
+Errors:
+  • [variants] 24/51 colour variants have no images — 47% missing variant images
+---
+Product: Cotton Shapewear High-waisted Thong
+SKU: PN-THG-9479W-MBL-2X
+Errors:
+  • [variants] 8/9 colour variants have no images — 89% missing variant images
+---
+Product: Cotton Shapewear High-waisted Brief
+SKU: PN-BRF-9480W-MBL-XS
+Errors:
+  • [variants] 8/10 colour variants have no images — 80% missing variant images
+---
+Product: Relaxed Tees Oversized Long T-shirt
+SKU: SS-STT-6130W-ONX-XXS
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Worn in Jersey Heart Baby Tee
+SKU: TP-SSL-11132W-BBP-XXS
+Errors:
+  • [variants] 9/22 colour variants have no images — 41% missing variant images
+---
+Product: Worn in Jersey Heart Oversized T-shirt
+SKU: TP-SSL-11131W-BBP-XS
+Errors:
+  • [variants] 10/14 colour variants have no images — 71% missing variant images
+---
+Product: Skims Cloud Off the Shoulder Top
+SKU: TP-LSL-11148W-ONX-XXS
+Errors:
+  • [variants] 2/5 colour variants have no images — 40% missing variant images
+---
+Product: Wool Cashmere Oversized V Neck Sweater
+SKU: OW-PLO-11120W-ONX-XXS/XS
+Errors:
+  • [variants] 8/17 colour variants have no images — 47% missing variant images
+---
+Product: Wool Cashmere Zip Up Mock Neck Sweater
+SKU: OW-ZUP-11121W-ONX-L
+Errors:
+  • [variants] 6/14 colour variants have no images — 43% missing variant images
+---
+Product: Cozy Oversized Crewneck Pullover
+SKU: TP-LSL-11158W-SNP-S/M
+Errors:
+  • [variants] 3/7 colour variants have no images — 43% missing variant images
+---
+Product: Outdoor High-waisted Banded Legging
+SKU: BO-LEG-3739-ONX-XXS
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Cashmere Wide Leg Pant
+SKU: PT-PNT-10144W-DHG-L
+Errors:
+  • [variants] 5/15 colour variants have no images — 33% missing variant images
+---
+Product: Heavy Pointelle Short
+SKU: SH-SHO-9526W-PAL-XL
+Errors:
+  • [variants] 5/9 colour variants have no images — 56% missing variant images
+---
+Product: Woven Shine Cami and Short Sleep Set
+SKU: ST-SST-9562W-BRK-XL
+Errors:
+  • [variants] 4/7 colour variants have no images — 57% missing variant images
+---
+Product: Naked Bandeau
+SKU: BR-BAN-4473-CLY-XL
+Errors:
+  • [variants] 7/14 colour variants have no images — 50% missing variant images
+---
+Product: Embroidered Tulle Mini Slip Dress and Tanga Set
+SKU: LG-SET-11257W-GVH-XXS
+Errors:
+  • [variants] 4/7 colour variants have no images — 57% missing variant images
+---
+Product: Featherweight Cashmere Long Dress
+SKU: DS-DRS-10286W-ONX-XXS
+Errors:
+  • [variants] 4/7 colour variants have no images — 57% missing variant images
+---
+Product: Smooth Layers Turtleneck Long Dress
+SKU: DS-DRS-10295W-ESP-XXS
+Errors:
+  • [variants] 7/11 colour variants have no images — 64% missing variant images
+---
+Product: Fits Everybody Long Sleeve Scoop Bodysuit
+SKU: BD-THG-9117-ONX-XL
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Skims First Layers Turtleneck Catsuit
+SKU: OS-ONS-9976W-MWF-XXS/XS
+Errors:
+  • [variants] 6/14 colour variants have no images — 43% missing variant images
+---
+Product: Silk Feather Trim Gloves
+SKU: AC-GLV-6388W-CBM-S
+Errors:
+  • [variants] 4/8 colour variants have no images — 50% missing variant images
+---
+Product: Faux Fur Trapper Hat
+SKU: HT-HAT-10171W-EGT-OS
+Errors:
+  • [variants] 5/7 colour variants have no images — 71% missing variant images
+---
+Product: Yeti Slipper
+SKU: FW-SLP-10729W-MBL-37
+Errors:
+  • [variants] 3/9 colour variants have no images — 33% missing variant images
+---
+Product: Satin Jumbo Bow Clip
+SKU: HD-CLI-11188W-RBY-OS
+Errors:
+  • [variants] 2/3 colour variants have no images — 67% missing variant images
+---
+Product: Hosiery Thigh High Stockings
+SKU: SH-TIG-10714W-RBY-L/XL
+Errors:
+  • [variants] 4/5 colour variants have no images — 80% missing variant images
+---
+Product: Skims Cotton Classic T-shirt
+SKU: TP-TSH-5701M-LHG-2X
+Errors:
+  • [variants] 3/6 colour variants have no images — 50% missing variant images
+---
+Product: Faux Fur Jumbo Tote
+SKU: BP-BGS-10833W-CAM-OS
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Faux Fur Mini Tote
+SKU: BP-BGS-10834W-CAM-OS
+Errors:
+  • [variants] 5/7 colour variants have no images — 71% missing variant images
+---
+Product: Faux Fur Mini Bag
+SKU: BP-BGS-10250W-MBL-OS
+Errors:
+  • [variants] 3/4 colour variants have no images — 75% missing variant images
+---
+Product: Highline Headband
+SKU: HD-HDW-7149W-CLD-OS
+Errors:
+  • [variants] 8/10 colour variants have no images — 80% missing variant images
+---
+Product: Skims First Layers Gloves
+SKU: MS-GLV-11041W-MWF-OS
+Errors:
+  • [variants] 8/10 colour variants have no images — 80% missing variant images
+---
+Product: Jersey Lounge Hoodie
+SKU: TP-PLO-5416M-ASH-XS
+Errors:
+  • [variants] 2/5 colour variants have no images — 40% missing variant images
+---
+Product: Cozy Lite Sock
+SKU: SH-SCK-11293W-MBF-OS
+Errors:
+  • [variants] 5/6 colour variants have no images — 83% missing variant images
+---
+Product: Skims Flex Legging
+SKU: BO-LEG-5319M-OBD-3X
+Errors:
+  • [variants] 6/13 colour variants have no images — 46% missing variant images
+---
+Product: Ultra Fine Lace Micro Thong
+SKU: TH-THG-5931W-ONX-XL
+Errors:
+  • [variants] 3/7 colour variants have no images — 43% missing variant images
+---
+Product: Ultra Fine Lace Tie Front Cami
+SKU: LG-TOP-10589W-RBY-XL
+Errors:
+  • [variants] 2/5 colour variants have no images — 40% missing variant images
+---
+Product: Washed Flannel Oversized Shirt
+SKU: TP-LSL-11181W-PSHP-XS
+Errors:
+  • [variants] 8/13 colour variants have no images — 62% missing variant images
+---
+Product: Embroidered Tulle Skirt Bikini
+SKU: BK-BIK-10444W-PCR-M
+Errors:
+  • [variants] 3/6 colour variants have no images — 50% missing variant images
+---
+Product: Milky Sheer Boatneck Mini Dress
+SKU: OP-DRS-11246W-SMA-XS
+Errors:
+  • [variants] 3/9 colour variants have no images — 33% missing variant images
+---
+Product: Milky Sheer Gloves
+SKU: AC-GLV-8531W-OBD-M
+Errors:
+  • [variants] 1/2 colour variants have no images — 50% missing variant images
+---
+Product: Textured Knit Wrap Sweater
+SKU: LS-LST-9922W-DHG-2X/3X
+Errors:
+  • [variants] 7/8 colour variants have no images — 88% missing variant images
+---
+Product: Cashmere Oversized Sweater
+SKU: LS-LST-10039W-DHG-L/XL
+Errors:
+  • [variants] 13/17 colour variants have no images — 76% missing variant images
+---
+Product: Sweater Knits Cable Knit Straight Leg Pant
+SKU: BO-PNT-10339W-ZNB-L
+Errors:
+  • [variants] 3/6 colour variants have no images — 50% missing variant images
+---
+Product: Sheer Velvet Cami and Pant Set
+SKU: ST-SET-11035W-RBY-L
+Errors:
+  • [variants] 6/8 colour variants have no images — 75% missing variant images
+---
+Product: Sheer Modal Long Skirt
+SKU: SK-SKT-8736W-PHO-3X
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---
+Product: Heavyweight Satin Triangle Bralette
+SKU: TR-TRI-10269W-ONX-L
+Errors:
+  • [variants] 5/6 colour variants have no images — 83% missing variant images
+---
+Product: Logo Pointelle Baby Tee and Micro Short Set
+SKU: ST-SST-11292W-SLH-XL
+Errors:
+  • [variants] 6/7 colour variants have no images — 86% missing variant images
+---
+Product: Cotton Shapewear Thong Bodysuit
+SKU: TP-CAM-8667W-MBL-L
+Errors:
+  • [variants] 4/9 colour variants have no images — 44% missing variant images
+---
+Product: Boyfriend Long Sleeve T-shirt and Short Boxer Set
+SKU: ST-SST-10124W-MHB-XL
+Errors:
+  • [variants] 5/8 colour variants have no images — 62% missing variant images
+---
+Product: Cotton Rib Tank and Short Set
+SKU: ST-SST-11586W-LAL-XL
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Smooth Layers Deep Plunge Mini Dress
+SKU: DS-DRS-10293W-ESP-3X
+Errors:
+  • [variants] 7/8 colour variants have no images — 88% missing variant images
+---
+Product: Cotton Jersey Maternity Long Sleeve T-shirt
+SKU: LS-LST-8047W-CBM-XXS
+Errors:
+  • [variants] 4/6 colour variants have no images — 67% missing variant images
+---
+Product: Fits Everybody Maternity Nursing Tank
+SKU: TP-TNK-9448-JSP-XXS
+Errors:
+  • [variants] 13/33 colour variants have no images — 39% missing variant images
+---
+Product: Skims Flex 7&quot; Boxer Brief
+SKU: BO-BBR-5355M-GUN-XS
+Errors:
+  • [variants] 3/6 colour variants have no images — 50% missing variant images
+---
+Product: Cotton Fleece Jogger
+SKU: BO-JOG-5207W-LHG-XS
+Errors:
+  • [variants] 2/6 colour variants have no images — 33% missing variant images
+---
+Product: Ribbed Crew Sock 3-pack
+SKU: SH-SCK-5738W-SDH-S
+Errors:
+  • [variants] 3/5 colour variants have no images — 60% missing variant images
+---

@@ -1,0 +1,264 @@
+# Integrate BiRefNet AI Background Removal into the Scraper Pipeline
+
+## Objective
+
+Integrate **BiRefNet** into the existing scraper so that every product automatically gets a professionally processed hero image before being uploaded to Shopify.
+
+The integration must be fully automatic, scalable, and should not break the existing scraping pipeline.
+
+---
+
+# Workflow
+
+Current Pipeline
+
+Scrape Product
+→ Download Images
+→ Generate CSV / Shopify Payload
+→ Upload Product
+
+New Pipeline
+
+Scrape Product
+→ Download Images
+→ Process First Product Image with BiRefNet
+→ Replace First Image
+→ Generate CSV / Shopify Payload
+→ Upload Product
+
+Only the **first (featured) product image** should be processed.
+
+All remaining gallery images must remain unchanged.
+
+---
+
+# BiRefNet Requirements
+
+Use **BiRefNet** as the background removal model.
+
+Requirements:
+
+* Run locally.
+* No paid API.
+* No external service dependency.
+* High-quality edge detection.
+* Preserve fine details such as:
+
+  * Hair
+  * Clothing
+  * Shoes
+  * Handbags
+  * Watches
+  * Jewelry
+  * Transparent objects
+  * Accessories
+
+---
+
+# Image Processing Pipeline
+
+For every product:
+
+1. Download the first image.
+2. Run BiRefNet.
+3. Remove the background.
+4. Preserve the original product.
+5. Automatically crop unnecessary empty space.
+6. Center the product.
+7. Create a 2000×2000 canvas.
+8. Use a pure white background (#FFFFFF).
+9. Maintain aspect ratio.
+10. Do not stretch the image.
+11. Export as a high-quality JPEG (Quality 95) or PNG if transparency is required.
+12. Replace the first product image with the processed version.
+
+---
+
+# Rules
+
+Process only:
+
+product.images[0]
+
+Do NOT modify:
+
+* gallery images
+* variant images
+* lifestyle images
+* alternate images
+
+Only replace the featured image.
+
+---
+
+# Performance
+
+The scraper must not wait for image processing.
+
+Implement a processing queue.
+
+Example flow:
+
+Scraper
+↓
+Download Images
+↓
+Queue Image
+↓
+Continue Scraping
+
+Worker
+
+Queue
+↓
+BiRefNet
+↓
+Save Processed Image
+↓
+Update Product Image
+↓
+Continue Upload
+
+Support parallel workers.
+
+Configurable worker count:
+
+* 4 workers
+* 8 workers
+* 16 workers
+
+Use concurrent processing to maximize throughput.
+
+---
+
+# Smart Detection
+
+Before running BiRefNet:
+
+Detect whether the image already has a clean white or transparent background.
+
+If the image is already suitable:
+
+Skip processing.
+
+If not:
+
+Run BiRefNet.
+
+Avoid unnecessary GPU usage.
+
+---
+
+# Image Quality
+
+The processed image should:
+
+* have sharp edges
+* no jagged borders
+* no white halos
+* no missing product parts
+* no cropped shoes
+* no cropped bags
+* no cropped clothing
+* preserve logos
+* preserve shadows where appropriate
+* maintain original colors
+* preserve transparency when needed
+
+---
+
+# Error Handling
+
+If BiRefNet fails:
+
+* Log the error.
+* Keep the original image.
+* Continue scraping.
+* Never stop the scraper.
+
+---
+
+# Caching
+
+Hash every original image.
+
+If the image has already been processed:
+
+Reuse the processed version.
+
+Never process the same image twice.
+
+---
+
+# Configuration
+
+Create configurable settings:
+
+image_processing:
+enabled: true
+model: BiRefNet
+first_image_only: true
+auto_detect_white_background: true
+remove_background: true
+crop: true
+center: true
+canvas_size: 2000
+canvas_color: "#FFFFFF"
+output_format: JPEG
+jpeg_quality: 95
+parallel_workers: 8
+cache_processed_images: true
+
+---
+
+# Logging
+
+For every processed product log:
+
+* Product ID
+* Product Title
+* Original Image URL
+* Processing Started
+* Processing Completed
+* Processing Time
+* Image Dimensions
+* Background Removed
+* Cached or Newly Processed
+* Success or Failure
+
+---
+
+# Validation
+
+Verify:
+
+✓ First image replaced successfully
+
+✓ Gallery images unchanged
+
+✓ Variant images unchanged
+
+✓ Shopify featured image uses the processed image
+
+✓ Image dimensions are exactly 2000×2000
+
+✓ No image distortion
+
+✓ No missing product parts
+
+✓ High visual quality
+
+---
+
+# Final Deliverable
+
+Implement BiRefNet as a reusable module that integrates seamlessly into the existing scraper.
+
+The feature must:
+
+* work for every supported brand automatically
+* process only the featured image
+* preserve all existing scraper functionality
+* support large-scale scraping (30,000+ products)
+* minimize processing time using parallel workers
+* produce professional, Shopify-ready hero images with no manual intervention.

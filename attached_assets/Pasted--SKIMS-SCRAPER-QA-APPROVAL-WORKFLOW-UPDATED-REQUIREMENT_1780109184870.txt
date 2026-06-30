@@ -1,0 +1,246 @@
+# SKIMS SCRAPER QA APPROVAL WORKFLOW
+
+## UPDATED REQUIREMENT
+
+The SKIMS scraper SHOULD upload products automatically after passing technical validation.
+
+However, products must NOT be considered final or production-approved until manual QA review is completed.
+
+The objective is:
+
+Scrape → Validate → Upload → Manual QA Review → Approval or Rework
+
+NOT
+
+Scrape → Upload → Done
+
+---
+
+# REQUIRED WORKFLOW
+
+## Step 1: Scrape Products
+
+Extract:
+
+* Products
+* Variants
+* Images
+* Variant Images
+* Tags
+* Categories
+* Descriptions
+* Pricing
+* Sizes
+
+Apply all global scraping rules.
+
+---
+
+## Step 2: Run Quality Gate
+
+Before upload:
+
+Validate:
+
+### Images
+
+* All product images collected
+* All variant images collected
+* No missing images
+* No duplicate images
+* Correct image mapping
+
+### Variants
+
+* All variants collected
+* No missing variants
+* No duplicate variants
+
+### Description
+
+* Matches description_example
+* Proper HTML structure
+* Complete content
+
+### Tags
+
+* Generated from all_Tags
+* No invalid tags
+
+### Sizes
+
+* Generated from all_sizes
+* Proper UK size mapping
+
+### Pricing
+
+* Follows pricing_algo
+
+### Configuration
+
+* All configuration values loaded
+* All secret values loaded
+
+---
+
+## Step 3: Upload To Shopify
+
+If technical validation passes:
+
+Upload product.
+
+However product status should be:
+
+QA_PENDING_REVIEW
+
+NOT
+
+APPROVED
+
+NOT
+
+PRODUCTION_VERIFIED
+
+NOT
+
+QUALITY_APPROVED
+
+---
+
+# POST-UPLOAD QA REVIEW
+
+After upload:
+
+I will manually inspect:
+
+* Images
+* Variant Images
+* Description
+* Tags
+* Sizes
+* Pricing
+* Collections
+* Product Quality
+
+---
+
+# QA DECISION
+
+## If Product Is Perfect
+
+Status:
+
+APPROVED
+
+No further action required.
+
+---
+
+## If Product Has Problems
+
+Status:
+
+REWORK_REQUIRED
+
+The system must:
+
+* Keep all logs
+* Keep validation results
+* Keep product diagnostics
+* Keep source data
+* Keep image mapping data
+
+Then perform root cause investigation.
+
+---
+
+# ROOT CAUSE ANALYSIS REQUIREMENT
+
+Do not apply temporary fixes.
+
+Do not hardcode source-specific solutions.
+
+Investigate:
+
+* Why issue occurred
+* Where issue occurred
+* Which module failed
+* Which validation failed
+* Which mapping failed
+
+Identify actual root cause.
+
+Then permanently fix:
+
+* Scraper logic
+* Validation logic
+* Mapping logic
+* Dashboard logic
+* Upload logic
+
+---
+
+# CONTINUOUS IMPROVEMENT LOOP
+
+Workflow:
+
+Scrape
+→ Validate
+→ Upload
+→ Manual Review
+→ Approved
+
+OR
+
+Scrape
+→ Validate
+→ Upload
+→ Manual Review
+→ Rework Required
+→ Root Cause Analysis
+→ Permanent Fix
+→ Re-scrape
+→ Re-upload
+→ Re-review
+
+Repeat until product quality is correct.
+
+---
+
+# DASHBOARD REQUIREMENTS
+
+Add QA Status Column:
+
+* Pending Review
+* Approved
+* Rework Required
+
+Add buttons:
+
+* Mark Approved
+* Request Fix
+* View Quality Report
+* View Validation Report
+* View Error Report
+* Copy All Errors
+* Re-run Product
+
+---
+
+# FINAL RULE
+
+Upload products after technical validation.
+
+Then wait for manual QA review.
+
+If approved:
+
+Keep product.
+
+If rejected:
+
+Investigate root cause, permanently fix the scraper, and reprocess until the issue is fully resolved.
+
+The goal is not simply uploading products.
+
+The goal is achieving 100% verified product quality through validation, manual review, root-cause analysis, and permanent fixes.

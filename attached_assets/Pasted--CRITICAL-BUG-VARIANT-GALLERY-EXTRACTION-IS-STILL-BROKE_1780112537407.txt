@@ -1,0 +1,351 @@
+# CRITICAL BUG: VARIANT GALLERY EXTRACTION IS STILL BROKEN
+
+STOP PATCHING.
+
+STOP ADDING MORE VALIDATION RULES.
+
+The issue is deeper.
+
+The scraper is not extracting variant galleries correctly.
+
+Current output proves that the scraper is still:
+
+1. Scraping product-level gallery images.
+2. Scraping featured variant thumbnails.
+3. Uploading duplicated media.
+4. Ignoring actual variant galleries.
+5. Ignoring color-specific image sets.
+6. Ignoring dynamic media loaded when a color is selected.
+
+This is NOT a validation problem.
+
+This is an extraction architecture problem.
+
+---
+
+# ROOT CAUSE INVESTIGATION REQUIRED
+
+For every source website:
+
+Investigate:
+
+How are variant images loaded?
+
+Possible methods:
+
+* Embedded JSON
+* Product JSON
+* Variant JSON
+* JavaScript state
+* API requests
+* GraphQL requests
+* Hidden media arrays
+* Swatch click events
+* AJAX requests
+* Color selector events
+
+Do NOT assume.
+
+Determine the exact mechanism.
+
+---
+
+# REQUIRED EXTRACTION PROCESS
+
+For EVERY variant:
+
+Example:
+
+BLACK
+
+WHITE
+
+PINK
+
+BLUE
+
+BEIGE
+
+The scraper must:
+
+Select Variant
+
+↓
+
+Wait For Variant Media To Load
+
+↓
+
+Extract ALL Images For That Variant
+
+↓
+
+Store Variant Gallery
+
+↓
+
+Move To Next Variant
+
+Repeat until all variants completed.
+
+---
+
+# FORBIDDEN BEHAVIOR
+
+DO NOT:
+
+Take first image only.
+
+DO NOT:
+
+Take featured image only.
+
+DO NOT:
+
+Take thumbnail images only.
+
+DO NOT:
+
+Reuse product gallery.
+
+DO NOT:
+
+Share image galleries between colors.
+
+DO NOT:
+
+Assign product gallery to every variant.
+
+DO NOT:
+
+Stop extraction after first image.
+
+---
+
+# REQUIRED VALIDATION
+
+For every variant:
+
+Calculate:
+
+source_variant_image_count
+
+Calculate:
+
+scraped_variant_image_count
+
+Validation:
+
+source_variant_image_count == scraped_variant_image_count
+
+If not:
+
+FAIL PRODUCT
+
+DO NOT IMPORT
+
+---
+
+# DUPLICATE IMAGE ROOT CAUSE FIX
+
+Current duplicate detection is failing.
+
+Investigate why.
+
+Check:
+
+* URL normalization
+* Shopify upload process
+* Variant reassignment logic
+* Gallery merge logic
+* Media deduplication process
+
+Identify exact duplication source.
+
+Fix permanently.
+
+---
+
+# IMAGE HASH ENFORCEMENT
+
+Before upload:
+
+Generate hash for every image.
+
+Example:
+
+MD5
+
+SHA256
+
+Perceptual Hash
+
+Compare hashes.
+
+If identical:
+
+Keep only one image.
+
+Delete duplicate.
+
+---
+
+# VARIANT GALLERY VALIDATION
+
+Before upload:
+
+Generate report.
+
+Example:
+
+BLACK
+
+Source Images: 12
+
+Imported Images: 12
+
+Status: PASS
+
+WHITE
+
+Source Images: 8
+
+Imported Images: 8
+
+Status: PASS
+
+PINK
+
+Source Images: 9
+
+Imported Images: 9
+
+Status: PASS
+
+BLUE
+
+Source Images: 11
+
+Imported Images: 11
+
+Status: PASS
+
+If any mismatch:
+
+FAIL PRODUCT
+
+DO NOT IMPORT
+
+---
+
+# VISUAL VALIDATION
+
+Add dashboard verification.
+
+For every variant:
+
+Display:
+
+Variant Name
+
+Source Image Count
+
+Imported Image Count
+
+Duplicate Count
+
+Missing Count
+
+Status
+
+This should be visible before upload.
+
+---
+
+# SHOPIFY VALIDATION
+
+After upload:
+
+Re-fetch product from Shopify.
+
+Compare:
+
+Shopify Image Count
+
+vs
+
+Source Image Count
+
+Compare:
+
+Shopify Variant Images
+
+vs
+
+Source Variant Images
+
+If mismatch:
+
+Mark Product Failed
+
+Generate Error
+
+Add To Reprocessing Queue
+
+---
+
+# REPROCESS ALL SKIMS PRODUCTS
+
+After fixes:
+
+Stop scraper.
+
+Clear cache.
+
+Clear image cache.
+
+Clear variant cache.
+
+Clear mapping cache.
+
+Clear duplicate cache.
+
+Restart scraper.
+
+Re-scrape affected products.
+
+Re-upload products.
+
+Verify image counts.
+
+Verify variant galleries.
+
+Verify duplicate removal.
+
+Do not trust previous imports.
+
+Rebuild them from source.
+
+---
+
+# SUCCESS CRITERIA
+
+The fix is complete only when:
+
+✓ Every variant contains all source images
+
+✓ No duplicate images exist
+
+✓ No missing images exist
+
+✓ No repeated galleries exist
+
+✓ Product gallery matches source
+
+✓ Variant gallery matches source
+
+✓ Shopify output matches source
+
+✓ Validation report passes
+
+Until all conditions pass, the issue is NOT fixed.

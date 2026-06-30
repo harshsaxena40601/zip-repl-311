@@ -1,0 +1,87 @@
+A critical pricing mismatch has been detected for products priced above €1,000.
+
+## Failed Example
+
+* Original Currency: EUR
+* Original Price: €1,365
+* Expected Store Price: ~₹206,407
+* Generated Store Price: ₹299,413
+* Difference: +₹93,006
+
+This is not a rounding error. The pricing engine or upload pipeline is applying an incorrect calculation.
+
+## Verify the Entire Pricing Flow
+
+Trace the product from scraping to Shopify upload and log every intermediate value.
+
+For this product, print:
+
+* Original Currency
+* Original Price
+* Sale Price
+* Compare-at (RRP) Price
+* Live EUR→INR Exchange Rate
+* Exchange Rate + 12
+* Converted INR Price
+* Price after adding ₹2,000
+* Applied Multiplier
+* Final Expected Price
+* CSV Export Price
+* Shopify Uploaded Price
+
+## Pricing Rule (Mandatory)
+
+Today's Rate = Current live exchange rate from EUR to INR.
+
+If Original Price < €1,000
+
+Final Price = ((Original Price × (Today's Rate + 12)) + 2000) × 1.25
+
+If Original Price ≥ €1,000
+
+Final Price = ((Original Price × (Today's Rate + 12)) + 2000) × 1.22
+
+For €1,365, the multiplier **must be 1.22**.
+
+## Investigate These Possible Causes
+
+* Compare-at (RRP) price used instead of sale price.
+* Currency converted twice.
+* Incorrect exchange rate.
+* +12 added more than once.
+* ₹2,000 added more than once.
+* Wrong multiplier applied.
+* Threshold logic incorrect.
+* Hidden markup or pricing rule applied after calculation.
+* Shopify modifying the price after upload.
+* Multiple pricing engines producing different values.
+* Cached or stale exchange rates.
+* Duplicate pricing logic in another module.
+
+## Search the Entire Codebase
+
+Search for:
+
+* price
+* compare_at
+* sale_price
+* original_price
+* pricing
+* exchange_rate
+* multiplier
+* currency
+* shopify
+
+Verify there is only one pricing function responsible for generating the final selling price.
+
+## Validation
+
+Recalculate the expected price independently.
+
+If the generated Shopify price differs from the calculated price by more than ₹1:
+
+* Stop publishing.
+* Print the exact file, function, and line where the incorrect value is introduced.
+* Explain why the value changed.
+
+Do not manually adjust this product. Identify and fix the root cause so every product above and below the pricing threshold follows the pricing formula exactly.

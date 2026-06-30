@@ -1,0 +1,363 @@
+# MASTER PRODUCT SCRAPING RULES & DATA QUALITY STANDARDS
+
+## Core Principle
+
+Before processing any product, ALWAYS load and validate all Configuration and Secret values.
+
+Configuration is the single source of truth.
+
+DO NOT:
+
+* Hardcode values.
+* Guess missing information.
+* Create fallback values unless explicitly defined in Configuration.
+* Override configuration rules.
+
+ALL product data must follow Configuration and Secret settings.
+
+---
+
+## 1. Configuration & Secret Validation
+
+The scraper must load and validate all available Configuration and Secret values before starting product extraction.
+
+Examples include:
+
+* all_sizes
+* all_Tags
+* description_example
+* pricing_algo
+* category mappings
+* gender mappings
+* brand mappings
+* variant rules
+* image rules
+* product type mappings
+* collection mappings
+* custom business rules
+* any additional secret configuration values
+
+### Validation Requirements
+
+* Verify all required configurations are available.
+* Apply configuration values wherever applicable.
+* Never use hardcoded replacements when configuration exists.
+* Validate output against configured rules before saving.
+* Log configuration errors immediately.
+
+### Failure Conditions
+
+Reject or flag products if:
+
+* Required configuration is missing.
+* Secret values cannot be loaded.
+* Product data does not match configured rules.
+* Category mapping fails.
+* Size mapping fails.
+* Tag generation fails.
+* Pricing algorithm cannot be applied.
+
+---
+
+## 2. Product Title Standards
+
+Every product must have a clean, professional, marketplace-ready title.
+
+### Requirements
+
+* Remove duplicate words.
+* Remove unnecessary symbols.
+* Remove internal IDs, SKUs, and garbage text.
+* Follow consistent title formatting.
+* Include Brand + Product Name + Key Attribute where applicable.
+* Ensure titles are readable and SEO-friendly.
+
+### Failure Conditions
+
+* Empty title.
+* Broken title format.
+* Duplicate or corrupted title text.
+
+---
+
+## 3. Product Description Standards
+
+Every product must contain a complete, structured description.
+
+### Requirements
+
+* Follow description_example configuration.
+* Include all available product information.
+* Include key features.
+* Include specifications.
+* Include materials.
+* Include dimensions when available.
+* Include care instructions when available.
+* Remove unwanted HTML and formatting issues.
+* Remove duplicate content.
+
+### Failure Conditions
+
+* Missing description.
+* Placeholder description.
+* Truncated description.
+* Low-quality description.
+
+---
+
+## 4. Variant Extraction Rules
+
+Every available variant must be scraped.
+
+### Variant Types
+
+* Size
+* Color
+* Material
+* Style
+* Width
+* Pack Size
+* Region-Specific Sizes
+* Any custom variant type
+
+### Requirements
+
+* No variant may be skipped.
+* Variant options must match source data.
+* Variant mapping must be accurate.
+* Variant availability must be preserved.
+
+### Failure Conditions
+
+* Missing variants.
+* Incorrect variant mapping.
+* Incomplete variant extraction.
+
+---
+
+## 5. Variant Image Rules
+
+Every variant must contain ALL images belonging to that variant.
+
+### Requirements
+
+* Collect all variant images.
+* Associate images with the correct variant.
+* Preserve image order.
+* Include every available image.
+* Do not assign only one image when multiple exist.
+
+### Example
+
+❌ Wrong:
+
+Red Variant → 1 Image
+
+Blue Variant → 1 Image
+
+✅ Correct:
+
+Red Variant → All Red Images
+
+Blue Variant → All Blue Images
+
+Black Variant → All Black Images
+
+---
+
+## 6. Product Gallery Rules
+
+The complete product gallery must be scraped.
+
+### Include
+
+* Front images
+* Back images
+* Side images
+* Detail images
+* Lifestyle images
+* Zoom images
+* Product videos if available
+
+### Requirements
+
+* Preserve image quality.
+* Preserve image order.
+* Collect all available media.
+
+---
+
+## 7. Duplicate Image Prevention
+
+Duplicate images are not allowed.
+
+### Requirements
+
+* Detect duplicate URLs.
+* Detect duplicate image hashes.
+* Remove repeated images.
+* Keep only unique images.
+
+### Validation
+
+* Product gallery must contain unique images.
+* Variant galleries must contain unique images.
+
+---
+
+## 8. Product Tag Standards
+
+Tags must be generated using Configuration rules.
+
+### Include
+
+* Gender
+* Main Category
+* Sub Category
+* Product Type
+* Brand
+* Collection
+* Material
+* Color
+* Features
+* Style
+* Season
+* Any configured tag group
+
+### Requirements
+
+* Follow all_Tags configuration.
+* Remove duplicates.
+* Remove irrelevant tags.
+* Maintain consistent formatting.
+
+### Failure Conditions
+
+* Missing tags.
+* Duplicate tags.
+* Incorrect category tags.
+* Invalid tag formatting.
+
+---
+
+## 9. Size Standardization
+
+Sizes must follow all_sizes configuration.
+
+### Requirements
+
+* Convert sizes according to configured rules.
+* Preserve original size information.
+* Support UK, US, EU, and custom sizing systems.
+* Apply all configured size mappings.
+
+### Failure Conditions
+
+* Missing sizes.
+* Incorrect size conversion.
+* Unmapped size values.
+
+---
+
+## 10. Pricing Validation
+
+Pricing must follow pricing_algo configuration.
+
+### Requirements
+
+* Apply configured pricing formula.
+* Validate source price.
+* Validate converted price.
+* Validate currency conversion.
+
+### Failure Conditions
+
+* Missing price.
+* Invalid calculation.
+* Pricing rule violation.
+
+---
+
+## 11. Product Data Integrity Check
+
+Before saving a product, verify:
+
+✓ Configuration loaded successfully
+
+✓ Secret values loaded successfully
+
+✓ Product title valid
+
+✓ Product description complete
+
+✓ All variants scraped
+
+✓ All variant images scraped
+
+✓ Product gallery complete
+
+✓ No duplicate images
+
+✓ Tags generated correctly
+
+✓ Sizes mapped correctly
+
+✓ Pricing calculated correctly
+
+✓ Category assigned correctly
+
+✓ Brand assigned correctly
+
+✓ Variant-image mapping validated
+
+✓ No empty fields
+
+✓ No null values
+
+✓ No placeholder data
+
+---
+
+## 12. Product Rejection Rules
+
+Reject or flag a product when:
+
+* Configuration validation fails.
+* Secret values are missing.
+* Product title is invalid.
+* Description is missing.
+* Variants are missing.
+* Variant images are incomplete.
+* Product gallery is incomplete.
+* Duplicate images exist.
+* Tags are missing or incorrect.
+* Sizes cannot be mapped.
+* Pricing cannot be calculated.
+* Data integrity checks fail.
+
+---
+
+# FINAL GOAL
+
+Every scraped product must be marketplace-ready with:
+
+* Complete product information
+* Properly formatted title
+* High-quality description
+* Full variant coverage
+* Complete variant image galleries
+* Correct variant-to-image mapping
+* Zero duplicate images
+* Accurate categories
+* Correct pricing
+* Standardized sizes
+* High-quality tags
+* Full compliance with Configuration and Secret rules
+
+CONFIGURATION IS THE SOURCE OF TRUTH.
+
+IF CONFIGURATION EXISTS, USE IT.
+
+DO NOT GUESS.
+DO NOT HARDCODE.
+DO NOT SKIP VALIDATION.

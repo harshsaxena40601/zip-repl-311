@@ -1,0 +1,302 @@
+[PRODUCT_SCRAPING_RULES_AND_DATA_QUALITY_STANDARDS]
+
+GLOBAL ENFORCEMENT RULE
+
+These rules are mandatory for ALL scrapers in the system.
+
+This includes:
+
+* Existing scrapers
+* Legacy scrapers
+* New scrapers
+* Future scrapers
+* Custom scrapers
+* Automated workflows
+* Batch imports
+* Scheduled scraping jobs
+* Manual scraping processes
+
+No scraper is exempt from these rules.
+
+Every scraper must validate compliance before creating, updating, or exporting any product.
+
+---
+
+[CONFIGURATION_FIRST_POLICY]
+
+Before processing any product:
+
+1. Load all Configuration values.
+2. Load all Secret values.
+3. Validate configuration integrity.
+4. Apply configuration rules.
+
+Configuration is the SINGLE SOURCE OF TRUTH.
+
+Never:
+
+* Hardcode values.
+* Guess values.
+* Use assumptions.
+* Ignore configuration settings.
+* Override configured mappings.
+
+Use:
+
+* all_sizes
+* all_Tags
+* description_example
+* pricing_algo
+* category mappings
+* gender mappings
+* brand mappings
+* image rules
+* variant rules
+* all future configuration variables
+
+If configuration exists, use it.
+
+---
+
+[PRODUCT_TITLE_RULES]
+
+Every product must have:
+
+* Clean title
+* SEO-friendly title
+* Proper formatting
+* No duplicate words
+* No garbage text
+* No broken characters
+* No unnecessary symbols
+* No internal IDs unless required
+
+Reject products with invalid titles.
+
+---
+
+[PRODUCT_DESCRIPTION_RULES]
+
+Every product must have:
+
+* Complete description
+* Structured content
+* Clean formatting
+* Product features
+* Product specifications
+* Material information
+* Care instructions when available
+* Dimensions when available
+
+Description must follow description_example configuration.
+
+Reject products with:
+
+* Missing descriptions
+* Empty descriptions
+* Placeholder descriptions
+* Truncated descriptions
+
+---
+
+[VARIANT_RULES]
+
+All variants must be scraped.
+
+Never scrape only default variants.
+
+Required variant coverage:
+
+* Size
+* Color
+* Material
+* Style
+* Width
+* Pack Size
+* Region Sizes
+* Any source-specific variants
+
+No variant may be skipped.
+
+---
+
+[VARIANT_IMAGE_RULES]
+
+Every variant must contain ALL images belonging to that variant.
+
+Not allowed:
+
+Red Variant → 1 image
+
+Blue Variant → 1 image
+
+Required:
+
+Red Variant → All Red Images
+
+Blue Variant → All Blue Images
+
+Black Variant → All Black Images
+
+Every variant must have complete image coverage.
+
+---
+
+[PRODUCT_IMAGE_RULES]
+
+Collect:
+
+* Main images
+* Gallery images
+* Front images
+* Back images
+* Side images
+* Detail images
+* Lifestyle images
+* Zoom images
+
+All available product images must be collected.
+
+Never limit image collection unless explicitly configured.
+
+---
+
+[DUPLICATE_IMAGE_PREVENTION]
+
+Duplicate images are prohibited.
+
+Validation must detect:
+
+* Duplicate URLs
+* Duplicate image hashes
+* Duplicate gallery entries
+* Duplicate variant images
+
+Store only unique images.
+
+---
+
+[TAG_GENERATION_RULES]
+
+Generate tags using all_Tags configuration.
+
+Tags should include:
+
+* Gender
+* Main Category
+* Sub Category
+* Product Type
+* Brand
+* Collection
+* Material
+* Color
+* Features
+* Style
+* Season
+
+Remove:
+
+* Duplicate tags
+* Invalid tags
+* Empty tags
+* Irrelevant tags
+
+---
+
+[SIZE_STANDARDIZATION_RULES]
+
+Use all_sizes configuration.
+
+Requirements:
+
+* Apply configured size mappings.
+* Preserve original size values.
+* Support UK, US, EU, and custom sizing.
+* Standardize size formatting.
+
+Reject invalid size mappings.
+
+---
+
+[PRICING_RULES]
+
+Apply pricing_algo configuration.
+
+Requirements:
+
+* Validate source price.
+* Apply configured pricing logic.
+* Validate currency conversion.
+* Validate final price output.
+
+Reject invalid pricing calculations.
+
+---
+
+[DATA_INTEGRITY_CHECK]
+
+Before saving a product:
+
+Verify:
+
+✓ Configuration loaded
+
+✓ Secrets loaded
+
+✓ Title valid
+
+✓ Description valid
+
+✓ Variants complete
+
+✓ Variant images complete
+
+✓ Product gallery complete
+
+✓ No duplicate images
+
+✓ Tags generated
+
+✓ Sizes mapped
+
+✓ Pricing calculated
+
+✓ Categories assigned
+
+✓ Brand assigned
+
+✓ Variant-image mapping validated
+
+✓ No empty fields
+
+✓ No null values
+
+✓ No placeholder values
+
+---
+
+[SCRAPER_COMPLIANCE_REQUIREMENT]
+
+Every scraper must automatically run compliance validation.
+
+A scraper is considered FAILED if any rule above is violated.
+
+Products failing validation must:
+
+* Be rejected
+  OR
+* Be flagged for review
+
+They must never be silently imported.
+
+---
+
+[MANDATORY_SYSTEM_RULE]
+
+ALL CURRENT SCRAPERS MUST FOLLOW THESE RULES.
+
+ALL FUTURE SCRAPERS MUST FOLLOW THESE RULES.
+
+ANY NEW SCRAPER CREATED IN THE FUTURE MUST AUTOMATICALLY INHERIT AND ENFORCE THESE RULES WITHOUT EXCEPTION.
+
+These standards are global, mandatory, and non-optional across the entire scraping platform.

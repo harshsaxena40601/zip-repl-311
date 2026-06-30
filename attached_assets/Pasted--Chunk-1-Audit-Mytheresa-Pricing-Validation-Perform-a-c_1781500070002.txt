@@ -1,0 +1,91 @@
+# Chunk 1 Audit: Mytheresa Pricing Validation
+
+Perform a complete audit of **Chunk 1 (Mytheresa)**. Do not manually correct these products. Identify and fix the root cause in the pricing engine, transformer, CSV export, and Shopify upload pipeline.
+
+## Products with Confirmed Pricing Issues
+
+### Product 1
+
+**Brand:** Dolce & Gabbana
+
+* Original Price: **$2,621**
+* Expected Price: **~₹346,856**
+* Shopify Price: **₹279,137**
+* Status: ❌ Incorrect
+
+---
+
+### Product 2
+
+**Brand:** Valentino
+
+* Original Price: **€416**
+* Expected Price: **~₹66,190**
+* Shopify Price: **₹66,078**
+* Status: ❌ Incorrect
+
+---
+
+## Pricing Rules (Mandatory)
+
+### INR Products
+
+If Original Price < ₹1,000
+
+Final Price = ((Original Price + 2000) × 1.25)
+
+If Original Price ≥ ₹1,000
+
+Final Price = ((Original Price + 2000) × 1.22)
+
+---
+
+### Foreign Currency Products
+
+Fetch the latest live exchange rate directly to INR.
+
+If Original Price < 1000
+
+Final Price = ((Original Price × (Today's Exchange Rate + 12)) + 2000) × 1.25
+
+If Original Price ≥ 1000
+
+Final Price = ((Original Price × (Today's Exchange Rate + 12)) + 2000) × 1.22
+
+Rules:
+
+* Use exactly one live exchange rate lookup.
+* Convert directly to INR.
+* Never convert twice.
+* Never convert through another currency.
+* Never use cached or fallback exchange rates.
+* Round only the final INR value.
+* The Shopify selling price must exactly match the calculated price.
+
+---
+
+## Audit Requirements
+
+For both products, log:
+
+* Product ID
+* Brand
+* Original Currency
+* Original Display Price
+* Raw Scraped Price (full precision)
+* Exchange Rate Used
+* Exchange Rate Source
+* Formula Used
+* Expected Price
+* CSV Export Price
+* Shopify Uploaded Price
+* Difference
+
+If the difference is greater than ₹1:
+
+* Stop publishing immediately.
+* Print the exact file, function, and line where the incorrect value was introduced.
+
+Search the repository for duplicate pricing logic, incorrect exchange-rate usage, hidden markups, double currency conversion, and cached exchange-rate usage.
+
+Do not deploy until both products produce the exact expected Shopify price according to the pricing formula.

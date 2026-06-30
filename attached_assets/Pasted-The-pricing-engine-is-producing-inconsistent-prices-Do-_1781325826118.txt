@@ -1,0 +1,108 @@
+The pricing engine is producing inconsistent prices. Do not patch individual products. Find and fix the root cause.
+
+## Objective
+
+Audit the entire pricing pipeline from product scraping to Shopify publishing and determine exactly why the generated store prices do not match the pricing formula.
+
+## Pricing Formula
+
+Today's Rate = Current live exchange rate of the source currency to INR.
+
+For every currency:
+
+* Price < 1000
+  Final Price = ((Original Price × (Today's INR Rate + 12)) + 2000) × 1.25
+
+* Price ≥ 1000
+  Final Price = ((Original Price × (Today's INR Rate + 12)) + 2000) × 1.22
+
+The final store price must match this formula exactly.
+
+## Current Failures
+
+Example 1
+
+* Original: €236
+* Expected: ~₹38,632
+* Generated: ₹48,443
+* Error: +₹9,811
+
+Example 2
+
+* Original: CHF556
+* Expected: ~₹94,101
+* Generated: ₹83,973
+* Error: -₹10,128
+
+Example 3
+
+* Original: €925
+* Expected: ~₹144,118
+* Generated: ₹146,920
+* Error: +₹2,802
+
+These inconsistencies indicate a logic error, not a rounding issue.
+
+## Audit Every Step
+
+Trace the complete calculation pipeline and log the value after every step:
+
+1. Original scraped price
+2. Original currency
+3. Exchange rate source
+4. Live exchange rate retrieved
+5. Timestamp of exchange rate
+6. Exchange rate after adding +12
+7. Price after conversion to INR
+8. Price after adding ₹2,000
+9. Applied multiplier
+10. Final calculated price
+11. Final Shopify price
+
+## Check for These Bugs
+
+* Incorrect exchange rate being fetched.
+* Cached or stale exchange rate.
+* Wrong currency mapped to the product.
+* Currency converted twice.
+* INR value converted again.
+* +12 added multiple times.
+* ₹2,000 added multiple times.
+* Wrong multiplier selected.
+* Threshold logic incorrect (<1000 vs ≥1000).
+* Formula executed in the wrong order.
+* Hidden shipping/import/tax markup added.
+* Shopify modifying the price after upload.
+* Price rounded before completing the calculation.
+* Different pricing logic used for different stores or suppliers.
+* Exchange rate API returning inverse rates.
+* Currency symbols incorrectly parsed.
+
+## Validation
+
+Before publishing every product:
+
+* Recalculate the price independently using the pricing formula.
+* Compare the calculated value with the generated Shopify price.
+* If the difference is greater than ₹1, stop publishing immediately.
+* Print the exact step where the calculation diverges.
+
+## Required Output
+
+For every failed product, produce a diagnostic report containing:
+
+* Original Price
+* Currency
+* Live Exchange Rate
+* Formula Used
+* Intermediate Calculations
+* Expected Price
+* Generated Price
+* Difference
+* Root Cause
+* File Name
+* Function Name
+* Line Number
+* Code Fix Required
+
+Do not apply temporary fixes or manual corrections. Identify the single root cause in the pricing engine and fix it so every product, regardless of currency or supplier, produces the correct price automatically.
