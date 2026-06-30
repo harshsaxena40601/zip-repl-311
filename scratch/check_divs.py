@@ -44,3 +44,4 @@ def check_tags(filepath):
 
 if __name__ == '__main__':
     check_tags('src/App.tsx')
+
